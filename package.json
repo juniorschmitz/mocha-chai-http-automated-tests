@@ -1,0 +1,19 @@
+{
+  "name": "tdd-mocha-chai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/*.js --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/report.xml --exit",
+    "landing_test": "mocha tests/*.js --reporter landing --exit"
+  },
+  "author": "Jacques Schmitz Junior",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.0",
+    "mocha-junit-reporter": "^2.0.0",
+    "mochawesome": "^6.2.2"
+  }
+}

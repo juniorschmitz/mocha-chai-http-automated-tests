@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "mocha tests/*.js --reporter mocha-junit-reporter --reporter-options mochaFile=./reports/report.xml --exit",
+    "test": "mocha tests/**/*.js --reporter nyan --exit",
     "landing_test": "mocha tests/*.js --reporter landing --exit"
   },
   "author": "Jacques Schmitz Junior",
@@ -12,6 +13,7 @@
   "devDependencies": {
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
+    "faker": "^5.5.3",
     "mocha": "^9.1.0",
     "mocha-junit-reporter": "^2.0.0",
     "mochawesome": "^6.2.2"

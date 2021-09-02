@@ -3,6 +3,21 @@ import faker from 'faker'
 faker.setLocale('pt_BR')
 
 export class Factory {
+  static login_credentials(type) {
+      switch(type) {
+          case 'valid':
+              return {
+                  email: "buster.harris@hotmail.com",
+                  password: "teste"
+              }
+          case 'invalid':
+              return {
+                  email: "buster.harris@hotmail.com",
+                  password: "teste123"
+              }
+      } 
+  }
+
    static user() {
       return {
           nome: faker.name.firstName(),

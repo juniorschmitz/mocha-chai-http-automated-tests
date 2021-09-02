@@ -1,32 +1,18 @@
 import chai from 'chai';
-import chaiHttp from 'chai-http';
 import { Factory } from '../../factory/factory.js';
-chai.use(chaiHttp);
-const request = chai.request('https://serverest.dev');
+import { Serverest } from '../../services/serverest.js';
 const expect = chai.expect;
 
 describe('Login endpoint', () => {
-    it('Should login', (done) => { 
-        request
-            .post("/login")
-            .send(Factory.login_credentials('valid'))
-            .end((err, res) => {
-                console.log(res.body)
-                expect(res).to.has.status(200)
-                expect(res.body.message).to.be.eql('Login realizado com sucesso')
-                done();
-        })
+    it('Should login', async () => {
+        let response = await Serverest.post("/login", Factory.login_credentials('valid'))
+        expect(response).to.has.status(200)
+        expect(response.body.message).to.be.eql('Login realizado com sucesso')
     });
 
-    it('Should not login with invalid credentials', (done) => { 
-      request
-          .post("/login")
-          .send(Factory.login_credentials('invalid'))
-          .end((err, res) => {
-              console.log(res.body)
-              expect(res).to.has.status(401)
-              expect(res.body.message).to.be.eql('Email e/ou senha inválidos')
-              done();
-      })
-  });
+    it('Should not login with invalid credentials', async () => { 
+        let response = await Serverest.post("/login", Factory.login_credentials('invalid'))
+        expect(response).to.has.status(401)
+        expect(response.body.message).to.be.eql('Email e/ou senha inválidos')
+    });
 });

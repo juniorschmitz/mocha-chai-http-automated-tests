@@ -1,9 +1,7 @@
-import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { Factory } from '../../factory/factory.js';
 chai.use(chaiHttp);
 const request = chai.request('https://serverest.dev');
-const expect = chai.expect;
 
 describe('Get Users', () => {
     let valid_user_id;

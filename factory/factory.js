@@ -7,8 +7,8 @@ export class Factory {
       switch(type) {
           case 'valid':
               return {
-                  email: "buster.harris@hotmail.com",
-                  password: "teste"
+                  email: "winfred@mayer-mayert.org",
+                  password: "1234"
               }
           case 'invalid':
               return {

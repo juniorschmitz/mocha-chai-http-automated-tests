@@ -1,43 +1,22 @@
-import chaiHttp from 'chai-http';
 import { Factory } from '../../factory/factory.js';
-chai.use(chaiHttp);
-const request = chai.request('https://serverest.dev');
+import { Rest } from '../../services/rest.js';
 
 describe('Get Users', () => {
     let valid_user_id;
-    before((done) => {
-        request
-          .post(`/usuarios`)
-          .send(Factory.user())
-          .end((err, res) => {
-              console.log(res.body)
-              expect(res).to.has.status(201)
-              expect(res.body.nome).not.to.be.null
-              valid_user_id = res.body._id
-              done();
-        })
+    before( async () => {
+        let response = await Rest.post('/usuarios', Factory.user())
+        valid_user_id = response.body._id
     });
 
-    it('Should delete an existent user', (done) => {
-        console.log(valid_user_id)
-        request
-            .delete(`/usuarios/${valid_user_id}`)
-            .end((err, res) => {
-                console.log(res.body)
-                expect(res).to.has.status(200)
-                expect(res.body.message).to.eql('Registro excluído com sucesso')
-                done();
-        })
+    it('Should delete an existent user', async () => {
+        let response = await Rest.delete(`/usuarios/${valid_user_id}`)
+        expect(response).to.has.status(200)
+        expect(response.body.message).to.eql('Registro excluído com sucesso')
     });
 
-    it('Should not delete an user that does not exist', (done) => {
-        request
-            .delete('/usuarios/blablabla')
-            .end((err, res) => {
-                console.log(res.body)
-                expect(res).to.has.status(200)
-                expect(res.body.message).to.eql('Nenhum registro excluído')
-                done();
-        })
+    it('Should not delete an user that does not exist', async () => {
+        let response = await Rest.delete('/usuarios/blablabla')
+        expect(response).to.has.status(200)
+        expect(response.body.message).to.eql('Nenhum registro excluído')
     });
 });

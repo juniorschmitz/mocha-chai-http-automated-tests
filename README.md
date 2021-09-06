@@ -9,7 +9,9 @@ npm i
 
 For running the tests:
 ```
-npm test
+npm test:<environment>
 ```
+
+Where <environment> can use the profiles 'prd' or 'local'.
 
 Any doubt, feel free to contact me :-)

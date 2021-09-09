@@ -3,7 +3,7 @@ import { Rest } from '../../services/rest.js';
 
 describe('Get Users', () => {
     let valid_user_id;
-    before( async () => {
+    before(async () => {
         let response = await Rest.post('/usuarios', Factory.user())
         valid_user_id = response.body._id
     });

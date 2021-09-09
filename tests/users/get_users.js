@@ -1,4 +1,6 @@
+import { expect } from 'chai';
 import { Rest } from '../../services/rest.js';
+import { JsonValidator } from '../../support/utils/json_validator.js'
 
 describe('Get Users', () => {
     let valid_user_id;
@@ -13,5 +15,17 @@ describe('Get Users', () => {
         let response = await Rest.get(`/usuarios/${valid_user_id}`)
         expect(response).to.has.status(200)
         expect(response.body.nome).not.to.be.null
+    });
+
+    it('Should return the valid contract for single users', async() => {
+        let response = await Rest.get(`/usuarios/${valid_user_id}`)
+        expect(response).to.has.status(200)
+        expect(JsonValidator.validateSchema('get_user', '200', response.body)).to.be.true
+    });
+
+    it('Should return the valid contract for all users', async() => {
+        let response = await Rest.get('/usuarios')
+        expect(response).to.has.status(200)
+        expect(JsonValidator.validateSchema('get_users', '200', response.body)).to.be.true
     });
 });

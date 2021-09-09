@@ -5,9 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test:prd": "set ENVIRONMENT=prd & mocha tests/**/*.js --reporter nyan --exit",
-    "test:local": "set ENVIRONMENT=local & mocha tests/**/*.js --reporter nyan --exit",
-    "landing_test": "mocha tests/*.js --reporter landing --exit"
+    "test:prd": "set ENVIRONMENT=prd & mocha tests/**/*.js --exit",
+    "test:local": "set ENVIRONMENT=local & mocha tests/**/*.js --exit"
   },
   "author": "Jacques Schmitz Junior",
   "license": "ISC",

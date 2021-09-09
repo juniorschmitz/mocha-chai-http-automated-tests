@@ -56,4 +56,8 @@ export class Factory {
               }
         }
     }
+
+    static email() {
+        return `${faker.internet.email().toLowerCase()}`
+    }
 }
